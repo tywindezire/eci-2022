@@ -16,7 +16,7 @@ headers=['Leading party','	Leading party candidate','	Trailing party','	Trailing
 @app.route("/")
 def main():
     #return render_template("index.html",value=url_for('static',filename='/DATA/list_main.csv'))
-    return render_template("index.html",value='/static/DATA/list_main.csv')
+    return render_template("index.html",value='https:/eci-2022.herokuapp.com/static/DATA/list_main.csv')
 
 
 app.run(host='0.0.0.0', port=port, debug=True)
