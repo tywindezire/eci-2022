@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Primary Meta Tags -->
+<title>ECI-Result -2022</title>
+<meta name="title" content="ECI-Result -2022">
+<meta name="description" content="Spring 2022 Result page (unofficial)">
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://metatags.io/">
+<meta property="og:title" content="ECI-Result -2022">
+<meta property="og:description" content="Spring 2022 Result page (unofficial)">
+<meta property="og:image" content="https://metatags.io/assets/meta-tags-16a33a6a8531e519cc0936fbba0ad904e52d35f34a46c97a2c9f6f7dd7d336f2.png">
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content="https://metatags.io/">
+<meta property="twitter:title" content="ECI-Result -2022">
+<meta property="twitter:description" content="Spring 2022 Result page (unofficial)">
+<meta property="twitter:image" content="https://metatags.io/assets/meta-tags-16a33a6a8531e519cc0936fbba0ad904e52d35f34a46c97a2c9f6f7dd7d336f2.png">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery.fancytable/dist/fancyTable.min.js"></script>
+<script>
+var csv_list='{{value}}';
+
+function csvMake(url,id,name){
+  $.ajax({
+   url:url,
+   dataType:"text",
+   success:function(data)
+   {
+    var row = data.split(/\r?\n|\r/);
+     var table_data = '<table class="table striped" id="'+name+'"><thead><th ">Constituency Name</th>  <th> Leading party candidate</th> <th>Leading party</th><th> Trailing party candidate</th>  <th> Trailing party</th><th data-sortas="numeric">Margin</th> <th> Result</th></thead>';
+    for(var count = 0; count<row.length; count++)
+    {
+     var cell_data = row[count].split(",");
+     table_data += '<tr>';
+     for(var cell_count=0; cell_count<cell_data.length; cell_count++)
+     {
+      
+       table_data += '<td>'+cell_data[cell_count]+'</td>';
+      
+     }
+     table_data += '</tr>';
+    }
+    table_data += '</table>';
+    $('#'+id).append(table_data);
+    
+    $("#"+name).fancyTable({
+			pagination: true,
+			perPage:15,
+      sortColumn: 6,
+			globalSearch:true
+		});	
+    table_data='';
+   }
+   
+  });
+}
+$(document).ready(function(){
+  
+  $.get( "{{value}}", function( data ) {
+    data=data.split('\n');
+    for(var i =0;i<data.length;i++)
+    {
+      csvMake(data[i].split(',')[1],"table"+i,data[i].split(',')[0]);
+      
+     
+      $('.tabs').append('<li class="tab " style=""><a href="#'+"table"+i+'"><b>'+data[i].split(',')[0]+'</b></a></li>');
+      
+
+    }
+    
+    $('.tabs').tabs();
+    $('.progress').fadeOut('slow');
+  
+});
+
+ });
+ 
+</script>
+<style>
+  body{
+    background-image: url("https://i.imgur.com/AWri8Qx.jpg");
+  }
+  th,td{
+    text-align: center;
+  }
+  table{
+    background-color: white;
+  }
+  .nav-wrapper,.page-footer{
+    background-color: rgb(87, 142, 238);
+  }
+  th,td{
+    width: 15%;
+  }
+  
+          
+  
+
+</style>
+<body>
+  <nav>
+    <div class="nav-wrapper">
+      <a href="#" class="brand-logo center"><b>ECI-Results-2022</b></a>
+    </div>
+  </nav>
+  <div class="progress" width="100%">
+    <div class="indeterminate"></div>
+</div>
+        
+  <article>
+    <div class="row container">
+      <div class="col s12" >
+        <ul class="tabs" align="center" >
+          
+        </ul>
+      </div>
+      <div id="table0" class="col s12"></div>
+      <div id="table1" class="col s12"></div>
+      <div id="table2" class="col s12"></div>
+      <div id="table3" class="col s12"></div>
+      <div id="table4" class="col s12"></div>
+    </div>
+  </article>
+  <footer class="page-footer">
+    <div class="container">
+      <div class="row">
+        <div class="col l6 s12">
+          <h5 class="white-text"></h5>
+          <p class="grey-text text-lighten-4">Super fast result of Spring 2022 elections.</p>
+        </div>
+        <div class="col l4 offset-l2 s12">
+          <h5 class="white-text">Links</h5>
+          <ul>
+            <li><a class="grey-text text-lighten-3" href="#!">Github Repsitory</a></li>
+            <li><a class="grey-text text-lighten-3" href="#!">Eci site</a></li>
+        </div>
+      </div>
+    </div>
+    </div>
+  </footer>
+</body>
+<style>
+  li>a:hover>b{color:rgb(0,93,251);
+  }
+  li.tab:hover{
+    background-color: #ee6e723d;
+  }
+  li>a>b{color:rgb(102, 158, 255);}
+  a.active>b{color:rgb(0, 19, 187);
+  }
+  
+  
+</style>
+</html>
