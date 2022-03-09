@@ -64,8 +64,10 @@ function csvMake(url,id,name){
   });
 }
 $(document).ready(function(){
-  
-  $.get( "http://eci-2022.herokuapp.com/static/DATA/list_main.csv", function( data ) {
+  if (location.protocol !== 'https:') {
+    location.replace(`https:${location.href.substring(location.protocol.length)}`);
+}
+  $.get( '{{value}}', function( data ) {
     data=data.split('\n');
     for(var i =0;i<data.length;i++)
     {
