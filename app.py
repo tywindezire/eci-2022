@@ -57,6 +57,8 @@ def parseResults(url,file_handle):
 					break
 		except:
 			pass
+		for items in te:
+			items.strip()
 		#print(te)
 		newte = te[0:1]+te[2:4]+te[15:17]+te[28:30]
 		if(newte[1] == 'i'):
