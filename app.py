@@ -105,9 +105,19 @@ def main_result():
 	states = ['UttarPradesh','Punjab','Goa','Manipur','Uttarakhand']
     	website_code = ['24','19','05','14','28']
     	max_constituency = [41,12,4,6,7]
-	for i in range(5):
-		parseParty('https://results.eci.gov.in/ResultAcGenMar2022/partywiseresult-S'+website_code[i]+'.htm',open('./static/DATA/'+states[i]+'_party_data.csv','w'))
-		get_state_data(states[i],website_code[i],max_constituency[i])
+	#for i in range(5):
+	#	parseParty('https://results.eci.gov.in/ResultAcGenMar2022/partywiseresult-S'+website_code[i]+'.htm',open('./static/DATA/'+states[i]+'_party_data.csv','w'))
+	#	get_state_data(states[i],website_code[i],max_constituency[i])
+	get_state_data('UttarPradesh','24',41)
+	get_state_data('Punjab','19',12)
+	get_state_data('Goa','05',4)
+	get_state_data('Manipur','14',6)
+	get_state_data('Uttarakhand','28',7)
+	parseParty('https://results.eci.gov.in/ResultAcGenMar2022/partywiseresult-S24.htm',open('./static/DATA/UttarPradesh_party_data.csv','w'))
+	parseParty('https://results.eci.gov.in/ResultAcGenMar2022/partywiseresult-S19.htm',open('./static/DATA/Punjab_party_data.csv','w'))
+	parseParty('https://results.eci.gov.in/ResultAcGenMar2022/partywiseresult-S05.htm',open('./static/DATA/Goa_party_data.csv','w'))
+	parseParty('https://results.eci.gov.in/ResultAcGenMar2022/partywiseresult-S14.htm',open('./static/DATA/Manipur_party_data.csv','w'))
+	parseParty('https://results.eci.gov.in/ResultAcGenMar2022/partywiseresult-S28.htm',open('./static/DATA/Uttarakhand_party_data.csv','w'))
 #get_state_data('UttarPradesh','24',41)
 #get_state_data('Punjab','19',12)
 #get_state_data('Goa','05',4)
