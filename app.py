@@ -101,9 +101,6 @@ def parseParty(url,file_handle):
 			newte = te[0:4]
 			file_handle.write(str(newte).replace('[','').replace(']','')+"\n")
 			
-states = ['UttarPradesh','Punjab','Goa','Manipur','Uttarakhand']
-website_code = ['24','19','05','14','28']
-max_constituency = [41,12,4,6,7]
 
 #get_state_data('UttarPradesh','24',41)
 #get_state_data('Punjab','19',12)
@@ -114,12 +111,14 @@ max_constituency = [41,12,4,6,7]
 
 @app.route("/")
 def main():
+    states = ['UttarPradesh','Punjab','Goa','Manipur','Uttarakhand']
+    website_code = ['24','19','05','14','28']
+    max_constituency = [41,12,4,6,7]
     #return render_template("index.html",value=url_for('static',filename='/DATA/list_main.csv'))
-    get_state_data('UttarPradesh','24',41)
-    get_state_data('Punjab','19',12)
-    get_state_data('Goa','05',4)
-    get_state_data('Manipur','14',6)
-    get_state_data('Uttarakhand','28',7)
+    for i in range(5):
+	parseParty('https://results.eci.gov.in/ResultAcGenMar2022/partywiseresult-S'+website_code[i]+'.htm',open('./static/DATA/'+states[i]+'_party_data.csv','w'))
+	get_state_data(states[i],website_code[i],max_constituency[i])
+	print(states[i])
     return render_template("index.html",value='/static/DATA/list_main.csv')
 
 
