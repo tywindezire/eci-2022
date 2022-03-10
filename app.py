@@ -137,11 +137,6 @@ def main():
     get_state_data('Goa','05',4)
     get_state_data('Manipur','14',6)
     get_state_data('Uttarakhand','28',7)
-    parseParty('https://results.eci.gov.in/ResultAcGenMar2022/partywiseresult-S24.htm',open('./static/DATA/UttarPradesh_party_data.csv','w'))
-    parseParty('https://results.eci.gov.in/ResultAcGenMar2022/partywiseresult-S19.htm',open('./static/DATA/Punjab_party_data.csv','w'))
-    parseParty('https://results.eci.gov.in/ResultAcGenMar2022/partywiseresult-S05.htm',open('./static/DATA/Goa_party_data.csv','w'))
-    parseParty('https://results.eci.gov.in/ResultAcGenMar2022/partywiseresult-S14.htm',open('./static/DATA/Manipur_party_data.csv','w'))
-    parseParty('https://results.eci.gov.in/ResultAcGenMar2022/partywiseresult-S28.htm',open('./static/DATA/Uttarakhand_party_data.csv','w'))
     return render_template("index.html",value='/static/DATA/list_main.csv')
 
 
