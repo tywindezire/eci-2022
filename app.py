@@ -74,6 +74,33 @@ def get_state_data(state_name,state_code,max_constituency):
 		parseResults('https://results.eci.gov.in/ResultAcGenMar2022/statewiseS'+str(state_code)+str(i)+'.htm',f)
 	print(state_name)
 
+def parseParty(url,file_handle):
+	major_party_list = ['Bahujan Samaj Party','Bharatiya Janata Party','Indian National Congress','Aam Aadmi Party']
+	response = urllib.request.urlopen(url)
+	ht = response.read().decode('UTF-8')
+	#print(ht)
+	ht = ht.replace('\n','')
+	ht = ht.replace('\r','')
+	ht = ht.replace('  ','')
+	mylist = ht.split("<tr style='font-size:12px;'>")[1:]
+	for items in mylist:
+		#print("==================================================================================================================================================================")
+		mystr = items
+		te = re.findall(r'(.*?)\<.*?\>', mystr)
+		remove_all('',te)
+		remove_all(' ',te)
+		try:
+			for items in te:
+				if(items == ' '):
+					print('Disaster')
+					break
+		except:
+			pass
+		#print(te)
+		if(te[0] in major_party_list):
+			newte = te[0:4]
+			file_handle.write(str(newte).replace('[','').replace(']','')+"\n")
+
 #get_state_data('UttarPradesh','24',41)
 #get_state_data('Punjab','19',12)
 #get_state_data('Goa','05',4)
