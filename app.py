@@ -50,6 +50,8 @@ def parseResults(url,file_handle):
 		te = re.findall(r'(.*?)\<.*?\>', mystr)
 		remove_all('',te)
 		remove_all(' ',te)
+		for items in te:
+			items.strip()
 		try:
 			for items in te:
 				if(items == ' '):
@@ -112,7 +114,7 @@ max_constituency = [41,12,4,6,7]
 def main():
     #return render_template("index.html",value=url_for('static',filename='/DATA/list_main.csv'))
     for i in range(5):
-	parseParty('https://results.eci.gov.in/ResultAcGenMar2022/partywiseresult-S'+website_code[i]+'.htm',open('./static/DATA/'+states[i]+'_party_data.csv','w'))
+	#parseParty('https://results.eci.gov.in/ResultAcGenMar2022/partywiseresult-S'+website_code[i]+'.htm',open('./static/DATA/'+states[i]+'_party_data.csv','w'))
 	get_state_data(states[i],website_code[i],max_constituency[i])
 	print(states[i])
     return render_template("index.html",value='/static/DATA/list_main.csv')
