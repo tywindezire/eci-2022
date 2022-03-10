@@ -118,7 +118,6 @@ def main():
     for i in range(5):
 	#parseParty('https://results.eci.gov.in/ResultAcGenMar2022/partywiseresult-S'+website_code[i]+'.htm',open('./static/DATA/'+states[i]+'_party_data.csv','w'))
 	get_state_data(states[i],website_code[i],max_constituency[i])
-	print(states[i])
     return render_template("index.html",value='/static/DATA/list_main.csv')
 
 
