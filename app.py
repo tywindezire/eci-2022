@@ -100,6 +100,10 @@ def parseParty(url,file_handle):
 		if(te[0] in major_party_list):
 			newte = te[0:4]
 			file_handle.write(str(newte).replace('[','').replace(']','')+"\n")
+			
+states = ['UttarPradesh','Punjab','Goa','Manipur','Uttarakhand']
+website_code = ['24','19','05','14','28']
+max_constituency = [41,12,4,6,7]
 
 #get_state_data('UttarPradesh','24',41)
 #get_state_data('Punjab','19',12)
