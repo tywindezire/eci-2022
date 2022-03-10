@@ -42,6 +42,7 @@ def parseResults(url,file_handle):
 	ht = ht.replace('\n','')
 	ht = ht.replace('\r','')
 	ht = ht.replace('  ','')
+	ht = ht.replace(',',';')
 	mylist = ht.split("<tr style='font-size:12px;'>")[1:]
 	for items in mylist:
 		#print("==================================================================================================================================================================")
@@ -63,7 +64,7 @@ def parseResults(url,file_handle):
 		if(newte[1] == 'i'):
 			newte = newte[0:1]+['-','-','-','-','-','Counting Not Started']
 		#print(newte)
-		file_handle.write(str(newte).replace('[','').replace(']','').replace('"','').replace("'",'').replace(', ',',')+"\n")
+		file_handle.write(str(newte).replace('[','').replace(']','').replace("'",'').replace(', ',',')+"\n")
 
 
 def get_state_data(state_name,state_code,max_constituency):
