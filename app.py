@@ -50,8 +50,6 @@ def parseResults(url,file_handle):
 		te = re.findall(r'(.*?)\<.*?\>', mystr)
 		remove_all('',te)
 		remove_all(' ',te)
-		for items in te:
-			items.strip()
 		try:
 			for items in te:
 				if(items == ' '):
@@ -60,13 +58,11 @@ def parseResults(url,file_handle):
 		except:
 			pass
 		#print(te)
-		for items in te:
-			items.strip()
 		newte = te[0:1]+te[2:4]+te[15:17]+te[28:30]
 		if(newte[1] == 'i'):
 			newte = newte[0:1]+['-','-','-','-','-','Counting Not Started']
 		#print(newte)
-		file_handle.write(str(newte).replace('[','').replace(']','').replace("'",'').replace(', ',',')+"\n")
+		file_handle.write(str(newte).replace('[','').replace(']','').replace("'",'')+"\n")
 
 
 def get_state_data(state_name,state_code,max_constituency):
@@ -74,49 +70,23 @@ def get_state_data(state_name,state_code,max_constituency):
 	for i in range(1,max_constituency+1):
 		#print(str(i)+"/"+str(max_constituency),end=" ")
 		parseResults('https://results.eci.gov.in/ResultAcGenMar2022/statewiseS'+str(state_code)+str(i)+'.htm',f)
-	#print(state_name)
+	print(state_name)
 
-def parseParty(url,file_handle):
-	major_party_list = ['Bahujan Samaj Party','Bharatiya Janata Party','Indian National Congress','Aam Aadmi Party']
-	response = urllib.request.urlopen(url)
-	ht = response.read().decode('UTF-8')
-	#print(ht)
-	ht = ht.replace('\n','')
-	ht = ht.replace('\r','')
-	ht = ht.replace('  ','')
-	mylist = ht.split("<tr style='font-size:12px;'>")[1:]
-	for items in mylist:
-		#print("==================================================================================================================================================================")
-		mystr = items
-		te = re.findall(r'(.*?)\<.*?\>', mystr)
-		remove_all('',te)
-		remove_all(' ',te)
-		try:
-			for items in te:
-				if(items == ' '):
-					print('Disaster')
-					break
-		except:
-			pass
-		#print(te)
-		if(te[0] in major_party_list):
-			newte = te[0:4]
-			file_handle.write(str(newte).replace('[','').replace(']','')+"\n")
-
-
-states = ['UttarPradesh','Punjab','Goa','Manipur','Uttarakhand']
-website_code = ['24','19','05','14','28']
-max_constituency = [41,12,4,6,7]
-
+#get_state_data('UttarPradesh','24',41)
+#get_state_data('Punjab','19',12)
+#get_state_data('Goa','05',4)
+#get_state_data('Manipur','14',6)
+#get_state_data('Uttarakhand','28',7)
 #================================================================================================================
 
 @app.route("/")
 def main():
     #return render_template("index.html",value=url_for('static',filename='/DATA/list_main.csv'))
-    for i in range(5):
-	#parseParty('https://results.eci.gov.in/ResultAcGenMar2022/partywiseresult-S'+website_code[i]+'.htm',open('./static/DATA/'+states[i]+'_party_data.csv','w'))
-	get_state_data(states[i],website_code[i],max_constituency[i])
-	print(states[i])
+    get_state_data('UttarPradesh','24',41)
+    get_state_data('Punjab','19',12)
+    get_state_data('Goa','05',4)
+    get_state_data('Manipur','14',6)
+    get_state_data('Uttarakhand','28',7)
     return render_template("index.html",value='/static/DATA/list_main.csv')
 
 
