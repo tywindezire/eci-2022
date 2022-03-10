@@ -62,7 +62,7 @@ def parseResults(url,file_handle):
 		if(newte[1] == 'i'):
 			newte = newte[0:1]+['-','-','-','-','-','Counting Not Started']
 		#print(newte)
-		file_handle.write(str(newte).replace('[','').replace(']','')+"\n")
+		file_handle.write(str(newte).replace('[','').replace(']','').replace("'",'')+"\n")
 
 
 def get_state_data(state_name,state_code,max_constituency):
