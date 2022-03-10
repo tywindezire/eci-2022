@@ -71,16 +71,21 @@ def get_state_data(state_name,state_code,max_constituency):
 		parseResults('https://results.eci.gov.in/ResultAcGenMar2022/statewiseS'+str(state_code)+str(i)+'.htm',f)
 	print(state_name)
 
-get_state_data('UttarPradesh','24',41)
-get_state_data('Punjab','19',12)
-get_state_data('Goa','05',4)
-get_state_data('Manipur','14',6)
-get_state_data('Uttarakhand','28',7)
+#get_state_data('UttarPradesh','24',41)
+#get_state_data('Punjab','19',12)
+#get_state_data('Goa','05',4)
+#get_state_data('Manipur','14',6)
+#get_state_data('Uttarakhand','28',7)
 #================================================================================================================
 
 @app.route("/")
 def main():
     #return render_template("index.html",value=url_for('static',filename='/DATA/list_main.csv'))
+    get_state_data('UttarPradesh','24',41)
+    get_state_data('Punjab','19',12)
+    get_state_data('Goa','05',4)
+    get_state_data('Manipur','14',6)
+    get_state_data('Uttarakhand','28',7)
     return render_template("index.html",value='/static/DATA/list_main.csv')
 
 
