@@ -55,7 +55,8 @@ function csvMake(url,id,name){
     $("#"+name).fancyTable({
 			pagination: true,
 			perPage:15,
-      sortColumn: 6,
+      sortColumn: 7,
+      sortOrder: 'descending' ,
 			globalSearch:true
 		});	
     table_data='';
