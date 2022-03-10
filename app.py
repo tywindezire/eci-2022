@@ -42,6 +42,7 @@ def parseResults(url,file_handle):
 	ht = ht.replace('\n','')
 	ht = ht.replace('\r','')
 	ht = ht.replace('  ','')
+	ht = ht.replace(',',';')
 	mylist = ht.split("<tr style='font-size:12px;'>")[1:]
 	for items in mylist:
 		#print("==================================================================================================================================================================")
